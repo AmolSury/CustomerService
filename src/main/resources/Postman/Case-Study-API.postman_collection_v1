@@ -1,0 +1,136 @@
+{
+	"id": "489fcade-df39-4168-a6bd-fb699171db6f",
+	"name": "Case-Study-API",
+	"description": "Microservices Architecture",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [],
+	"folders_order": [
+		"9f3341cf-23f8-4224-896e-5d4526f96828"
+	],
+	"folders": [
+		{
+			"id": "9f3341cf-23f8-4224-896e-5d4526f96828",
+			"name": "Customer Services",
+			"description": null,
+			"auth": null,
+			"events": null,
+			"collection": "489fcade-df39-4168-a6bd-fb699171db6f",
+			"folder": null,
+			"order": [
+				"46d3e537-801d-4e74-92f6-5c86959576e1",
+				"9f0e218d-5c0a-41a9-92c7-b973ad94a8c8",
+				"169b4b7c-6666-423a-809b-e845587d06d9",
+				"bbcaec78-0cc6-4c25-8776-e7956e9a83aa",
+				"eef8a63a-603a-4dc4-9ed7-1f3c8f50bcd6"
+			],
+			"folders_order": []
+		}
+	],
+	"requests": [
+		{
+			"id": "169b4b7c-6666-423a-809b-e845587d06d9",
+			"name": "Get by customer id",
+			"url": "localhost:8080/customer-services/get/1",
+			"description": "",
+			"data": null,
+			"dataMode": "",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "9f3341cf-23f8-4224-896e-5d4526f96828",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "46d3e537-801d-4e74-92f6-5c86959576e1",
+			"name": "Get customers ",
+			"url": "localhost:8080/customer-services/getAll",
+			"description": "",
+			"data": null,
+			"dataMode": "",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "9f3341cf-23f8-4224-896e-5d4526f96828",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "9f0e218d-5c0a-41a9-92c7-b973ad94a8c8",
+			"name": "Create Customer",
+			"url": "localhost:8080/customer-services/create",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "9f3341cf-23f8-4224-896e-5d4526f96828",
+			"rawModeData": "  {\r\n    \"firstName\":\"amit\",\r\n    \"lastName\":\"Suryavanshi\",\r\n    \"emailId\":\"asury@gmail.com\"\r\n  }",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "bbcaec78-0cc6-4c25-8776-e7956e9a83aa",
+			"name": "Update Customer",
+			"url": "localhost:8080/customer-services/update",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "9f3341cf-23f8-4224-896e-5d4526f96828",
+			"rawModeData": "  {\r\n  \t\"id\":\"1\",\r\n    \"firstName\":\"Rahul\",\r\n    \"lastName\":\"Suryavanshi\",\r\n    \"emailId\":\"rahul@gmail.com\"\r\n  }",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "eef8a63a-603a-4dc4-9ed7-1f3c8f50bcd6",
+			"name": "Delete Customer",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataMode": "",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "9f3341cf-23f8-4224-896e-5d4526f96828",
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}

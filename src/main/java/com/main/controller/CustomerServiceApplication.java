@@ -6,13 +6,16 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
 @ComponentScan({"com.main.controller", "com.main.services"})
 @EnableJpaRepositories("com.main.repository")
 @EntityScan("com.main.entity")
-public class CustomerService1Application {
+@EnableSwagger2
+public class CustomerServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CustomerService1Application.class, args);
+		SpringApplication.run(CustomerServiceApplication.class, args);
 	}
 }
