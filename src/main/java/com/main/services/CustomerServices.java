@@ -9,28 +9,27 @@ import org.springframework.stereotype.Service;
 import com.main.entity.Customer;
 import com.main.repository.CustomerRepository;
 
-
 @Service
 public class CustomerServices {
 
 	private CustomerRepository customerRepository;
 
 	public String createCustomers(Customer customer) {
+		//TODO cust
 		Customer cust = getCustomerRepository().save(customer);
-		System.out.println("cust---"+cust.getEmailId());
 		return "CustomerCreated";
 	}
-	
+
 	public List<Customer> getCustomers() {
 		return (List<Customer>) getCustomerRepository().findAll();
 	}
-	
+
 	public Optional<Customer> getById(Long id) {
-		return getCustomerRepository().findById( id);
+		return getCustomerRepository().findById(id);
 	}
-	
+
 	public String updateCustomer(Customer customer) {
-		if(Optional.ofNullable(getCustomerRepository().findById(customer.getId())).isPresent()) {
+		if (getCustomerRepository().existsById(customer.getId())) {
 			getCustomerRepository().save(customer);
 			return "Updated";
 		}
@@ -38,15 +37,14 @@ public class CustomerServices {
 	}
 
 	public String deleteCustomer(Long id) {
-		
-		if(Optional.ofNullable(getCustomerRepository().findById(id)).isPresent()) {
-			getCustomerRepository().deleteById(id);;
+
+		if (getCustomerRepository().existsById(id)) {
+			getCustomerRepository().deleteById(id);
 			return "Deleted";
 		}
 		return "NotFound";
 	}
-	
-	
+
 	@Autowired
 	public void setCustomerRepository(CustomerRepository customerRepository) {
 		this.customerRepository = customerRepository;
@@ -55,6 +53,5 @@ public class CustomerServices {
 	public CustomerRepository getCustomerRepository() {
 		return customerRepository;
 	}
-	
-	
+
 }
