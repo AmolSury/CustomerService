@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "489fcade-df39-4168-a6bd-fb699171db6f",
+		"name": "Case-Study-API",
+		"description": "Microservices Architecture",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer Services",
+			"item": [
+				{
+					"name": "Get customers ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/customer-services/getAll"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"firstName\":\"amit\",\r\n    \"lastName\":\"Suryavanshi\",\r\n    \"emailId\":\"asury@gmail.com\"\r\n  }"
+						},
+						"url": "localhost:8080/customer-services/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get by customer id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/customer-services/get/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n  \t\"id\":\"1\",\r\n    \"firstName\":\"Rahul\",\r\n    \"lastName\":\"Suryavanshi\",\r\n    \"emailId\":\"rahul@gmail.com\"\r\n  }"
+						},
+						"url": "localhost:8080/customer-services/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/customer-services/delete/4"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SalesOrderService",
+			"item": [
+				{
+					"name": "CreateOrder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    orderLineItem: [\r\n      {\r\n      \t\"itemName\": \"bla bla bla\",\r\n    \t\"itemQuantity\": 1, \r\n    \t\"orderId\":1\r\n      }\r\n    ],\r\n    \r\n   \"id\": 1, \r\n   \"totalPrice\": 2,\r\n   \"orderDate\": \"2012-01-30T00:00:00\",\r\n   \"orderDesc\": \"client2\",\r\n   \"custId\": 2\r\n    \r\n}"
+						},
+						"url": "localhost:8181/customer-services/delete/4"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllOrderService",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CreateSalesOrderCustomer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"totalPrice\": 2,\r\n\t\"orderDate\": \"2012-01-30T00:00:00\",\r\n\t\"orderDesc\": \"client1\",\r\n\t\"custId\": 1\r\n\r\n}"
+						},
+						"url": "localhost:8181/sales-order-service/sales-order-customer"
+					},
+					"response": []
+				},
+				{
+					"name": "GetSalesOrderCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
