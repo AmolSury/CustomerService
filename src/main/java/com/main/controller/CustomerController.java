@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,12 +28,17 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerServices customerServices;
+	
+	@Value("${msg}")
+    private String msg;
 
 	// @RequestMapping(value="/create/customers", method=RequestMethod.POST,
 	// consumes=MediaType.APPLICATION_JSON_VALUE)
 	//@ResponseBody
 	@PostMapping(value = "/create")
 	public ResponseEntity<String> createCustomer(@RequestBody Customer customer) {
+		System.out.println("-=-=-=-=-=-=-=-=-=-="+msg);
+		
 		String status = getCustomerServices().createCustomers(customer);
 		return new ResponseEntity<String>(status ,HttpStatus.CREATED);
 
