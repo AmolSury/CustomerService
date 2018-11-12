@@ -3,6 +3,8 @@ package com.main.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -32,11 +34,11 @@ public class CustomerController {
 	@Value("${msg}")
     private String msg;
 
-	// @RequestMapping(value="/create/customers", method=RequestMethod.POST,
-	// consumes=MediaType.APPLICATION_JSON_VALUE)
-	//@ResponseBody
+	/*@RequestMapping(value="/create/customers", method=RequestMethod.POST,
+	 consumes=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody*/
 	@PostMapping(value = "/create")
-	public ResponseEntity<String> createCustomer(@RequestBody Customer customer) {
+	public ResponseEntity<String> createCustomer(@RequestBody @Valid Customer customer) {
 		System.out.println("-=-=-=-=-=-=-=-=-=-="+msg);
 		
 		String status = getCustomerServices().createCustomers(customer);
@@ -79,7 +81,6 @@ public class CustomerController {
 		return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
 	}
 
-	
 	
 	
 	

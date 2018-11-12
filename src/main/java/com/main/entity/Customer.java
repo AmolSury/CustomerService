@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="customer")
@@ -27,6 +28,7 @@ public class Customer implements Serializable{
 	@Column(name="id")
 	private Long id;
 	
+	@NotBlank
 	@Column(name="first_name")
 	private String firstName;
 	
