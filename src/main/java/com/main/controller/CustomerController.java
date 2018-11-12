@@ -30,20 +30,21 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerServices customerServices;
-	
-	@Value("${msg}")
-    private String msg;
 
-	/*@RequestMapping(value="/create/customers", method=RequestMethod.POST,
-	 consumes=MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody*/
+	@Value("${msg}")
+	private String msg;
+
+	/*
+	 * @RequestMapping(value="/create/customers", method=RequestMethod.POST,
+	 * consumes=MediaType.APPLICATION_JSON_VALUE)
+	 * 
+	 * @ResponseBody
+	 */
 	@PostMapping(value = "/create")
 	public ResponseEntity<String> createCustomer(@RequestBody @Valid Customer customer) {
-		System.out.println("-=-=-=-=-=-=-=-=-=-="+msg);
 		
 		String status = getCustomerServices().createCustomers(customer);
-		return new ResponseEntity<String>(status ,HttpStatus.CREATED);
-
+		return new ResponseEntity<String>(status, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
@@ -81,10 +82,6 @@ public class CustomerController {
 		return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
 	}
 
-	
-	
-	
-	
 	public CustomerServices getCustomerServices() {
 		return customerServices;
 	}
