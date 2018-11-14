@@ -19,9 +19,7 @@ public class Customer implements Serializable{
 	
 	private static final long serialVersionUID = 5865843731536861674L;
 
-	public Customer() {
-		
-	}
+
 	
 	@Id
 	@GeneratedValue
@@ -38,6 +36,18 @@ public class Customer implements Serializable{
 	@NotBlank
 	@Column(name="email_id")
 	private String emailId;
+	
+	public Customer() {
+		
+	}
+
+	public Customer(Long id, @NotBlank String firstName, String lastName, @NotBlank String emailId) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailId = emailId;
+	}
 
 	public Long getId() {
 		return id;
