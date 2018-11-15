@@ -50,13 +50,13 @@ public class CustomerController {
 	}
 
 	@GetMapping(value = "/get/{id}")
-	public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
+	public Customer getCustomerById(@PathVariable("id") Long id) {
 
 		Optional<Customer> customer = getCustomerServices().getById(id);
 		if (!customer.isPresent()) {
 			throw new CustomerNotFoundException("Not found customer with Id is : " + id);
 		}
-		return new ResponseEntity<Customer>(customer.get(), HttpStatus.OK);
+		return customer.get();
 	}
 
 	@PutMapping(value = "/update", headers = "Accept=application/json")
