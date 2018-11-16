@@ -46,7 +46,7 @@ public class CustomerController {
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Customer> getAllCustomers() {
-		return getCustomerServices().getCustomers();
+		return getCustomerServices().getAllCustomers();
 	}
 
 	@GetMapping(value = "/get/{id}")

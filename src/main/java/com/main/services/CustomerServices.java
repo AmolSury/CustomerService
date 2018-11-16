@@ -20,7 +20,7 @@ public class CustomerServices {
 		return "CustomerCreated";
 	}
 
-	public List<Customer> getCustomers() {
+	public List<Customer> getAllCustomers() {
 		return (List<Customer>) getCustomerRepository().findAll();
 	}
 
