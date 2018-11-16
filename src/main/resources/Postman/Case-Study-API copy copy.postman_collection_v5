@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "baa966f3-ea87-4376-90be-0cc376644a8d",
+		"name": "Case-Study-API copy copy",
+		"description": "Microservices Architecture",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer Services",
+			"item": [
+				{
+					"name": "Get customers ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/customer-services/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer-services",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"firstName\":\"amit\",\r\n    \"lastName\":\"Suryavanshi\",\r\n    \"emailId\":\"asury@gmail.com\"\r\n  }"
+						},
+						"url": {
+							"raw": "localhost:8080/customer-services/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer-services",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by customer id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/customer-services/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer-services",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n  \t\"id\":\"1\",\r\n    \"firstName\":\"Rahul\",\r\n    \"lastName\":\"Suryavanshi\",\r\n    \"emailId\":\"rahul@gmail.com\"\r\n  }"
+						},
+						"url": {
+							"raw": "localhost:8080/customer-services/update",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer-services",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/customer-services/delete/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer-services",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SalesOrderService",
+			"item": [
+				{
+					"name": "CreateOrder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"orderLineItem\": [{\r\n\t\t\"itemName\": \"mobile\",\r\n\t\t\"itemQuantity\": 1,\r\n\t\t\"orderId\": 1\r\n\t}],\r\n\r\n\t\"id\": 1,\r\n\t\"totalPrice\": 2,\r\n\t\"orderDate\": \"2012-01-30T00:00:00\",\r\n\t\"orderDesc\": \"client2\",\r\n\t\"custId\": 1\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8181/sales-order-service/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"sales-order-service",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8181/sales-order-customer/1/create/CustomerCreated",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"sales-order-customer",
+								"1",
+								"create",
+								"CustomerCreated"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ItemService",
+			"item": [
+				{
+					"name": "Create product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"name\":\"mobile\",\r\n    \"price\":100,\r\n    \"description\":\"mobile\"\r\n  }"
+						},
+						"url": {
+							"raw": "localhost:8089/item-services/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8089",
+							"path": [
+								"item-services",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8089/item-services/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8089",
+							"path": [
+								"item-services",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8089/item-services/get?name=mobile",
+							"host": [
+								"localhost"
+							],
+							"port": "8089",
+							"path": [
+								"item-services",
+								"get"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "mobile"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
