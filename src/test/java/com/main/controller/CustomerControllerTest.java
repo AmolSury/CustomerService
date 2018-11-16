@@ -2,7 +2,9 @@ package com.main.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Arrays;
@@ -17,6 +19,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.main.entity.Customer;
@@ -54,6 +58,26 @@ public class CustomerControllerTest {
 		assertEquals(200, result.getResponse().getStatus());
 		//JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
 		
+	}
+	
+	
+	@Test
+	public void verifySaveToDo() throws Exception {
+		RequestBuilder request = MockMvcRequestBuilders
+				.post("/customer-services/create")
+				.accept(MediaType.APPLICATION_JSON);
+		
+		//Customer customer =new Customer(new Long(1),"Amol", "Sury", "asury@gmail.com");
+		
+		((ResultActions) ((MockHttpServletRequestBuilder) mockMvc.perform(request))
+        .contentType(MediaType.APPLICATION_JSON)
+        .content("{\\n  \\\"firstName\\\":\\\"amit\\\",\\n    \\\"lastName\\\":\\\"Suryavanshi\\\",\\n    \\\"emailId\\\":\\\"asury@gmail.com\\\"\\n  }")
+		.accept(MediaType.APPLICATION_JSON))
+		.andExpect(jsonPath("$.id").exists())
+		.andExpect(jsonPath("$.firstName").exists())
+		.andExpect(jsonPath("$.lastName").exists())
+		.andExpect(jsonPath("$.emailId").exists())
+		.andDo(print());
 	}
 
 }
