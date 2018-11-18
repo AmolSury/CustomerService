@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,6 +61,41 @@ public class CustomerControllerTest {
 		
 	}
 	
+	@Test
+	public void getCustomerById() throws Exception {
+		Customer customer = new Customer(new Long(1),"Amol", "Sury", "asury@gmail.com");
+		
+		when(customerServices.getById((long) 1)).thenReturn(Optional.ofNullable(customer));
+	    when(customerRepository.findById((long)1)).thenReturn(Optional.ofNullable(customer));
+		
+		RequestBuilder request = MockMvcRequestBuilders
+				.get("/customer-services/get/1");
+		
+		MvcResult result = mockMvc.perform(request)
+				.andExpect(status().isOk())
+				.andExpect(content().json("{id:1,firstName:Amol,lastName:Sury,emailId:asury@gmail.com}"))
+				.andReturn();
+		
+		assertEquals(200, result.getResponse().getStatus());
+		
+	}
+	
+	@Test
+	public void deleteCustomer() throws Exception {
+		//Customer customer = new Customer(new Long(1),"Amol", "Sury", "asury@gmail.com");
+		
+		when(customerServices.deleteCustomer((long) 1)).thenReturn("Deleted");
+		when(customerRepository.existsById((long)1)).thenReturn(true);
+		
+		RequestBuilder request = MockMvcRequestBuilders
+				.get("/customer-services/delete/1");
+		
+		MvcResult result = mockMvc.perform(request).andExpect(status().isNoContent()).andReturn();
+				
+		
+		assertEquals(204, result.getResponse().getStatus());
+		
+	}
 	
 	@Test
 	public void verifySaveToDo() throws Exception {
