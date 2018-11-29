@@ -7,10 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="customer")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = Customer.class)
 public class Customer implements Serializable{
 	
 	/**
@@ -18,8 +23,6 @@ public class Customer implements Serializable{
 	 */
 	
 	private static final long serialVersionUID = 5865843731536861674L;
-
-
 	
 	@Id
 	@GeneratedValue
@@ -37,16 +40,21 @@ public class Customer implements Serializable{
 	@Column(name="email_id")
 	private String emailId;
 	
+	@Transient
+	private String messageToMQ;
+	
 	public Customer() {
 		
 	}
 
-	public Customer(Long id, @NotBlank String firstName, String lastName, @NotBlank String emailId) {
+	public Customer(Long id, @NotBlank String firstName, String lastName, @NotBlank String emailId,
+			String messageToMQ) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
+		this.messageToMQ = messageToMQ;
 	}
 
 	public Long getId() {
@@ -81,6 +89,14 @@ public class Customer implements Serializable{
 		this.emailId = emailId;
 	}
 
+	public String getMessageToMQ() {
+		return messageToMQ;
+	}
+
+	public void setMessageToMQ(String messageToMQ) {
+		this.messageToMQ = messageToMQ;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,6 +105,7 @@ public class Customer implements Serializable{
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((messageToMQ == null) ? 0 : messageToMQ.hashCode());
 		return result;
 	}
 
@@ -121,7 +138,18 @@ public class Customer implements Serializable{
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
+		if (messageToMQ == null) {
+			if (other.messageToMQ != null)
+				return false;
+		} else if (!messageToMQ.equals(other.messageToMQ))
+			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
+				+ "]";
 	}
 
 }

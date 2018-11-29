@@ -14,10 +14,9 @@ public class CustomerServices {
 
 	private CustomerRepository customerRepository;
 
-	public String createCustomers(Customer customer) {
-		//TODO cust
-		Customer cust = getCustomerRepository().save(customer);
-		return "CustomerCreated";
+	public Customer createCustomers(Customer customer) {
+		// TODO cust
+		return getCustomerRepository().save(customer);
 	}
 
 	public List<Customer> getAllCustomers() {

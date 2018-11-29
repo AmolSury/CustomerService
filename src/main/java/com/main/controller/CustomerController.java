@@ -22,13 +22,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.main.entity.Customer;
 import com.main.exception_handler.CustomerNotFoundException;
 import com.main.services.CustomerServices;
+import com.main.services.RabbitMQSender;
 
 @RestController
 @RequestMapping("/customer-services")
 public class CustomerController {
 
-	@Autowired
 	private CustomerServices customerServices;
+	
+	private RabbitMQSender rabbitMQSender;
 
 	/*
 	 * @RequestMapping(value="/create/customers", method=RequestMethod.POST,
@@ -37,10 +39,12 @@ public class CustomerController {
 	 * @ResponseBody
 	 */
 	@PostMapping(value = "/create")
-	public ResponseEntity<String> createCustomer(@RequestBody @Valid Customer customer) {
-
-		String status = getCustomerServices().createCustomers(customer);
-		return new ResponseEntity<String>(status, HttpStatus.CREATED);
+	public ResponseEntity<Customer> createCustomer(@RequestBody @Valid Customer customer) {
+		
+		Customer Customer = getCustomerServices().createCustomers(customer);
+		getRabbitMQSender().send(Customer);
+		return new ResponseEntity<Customer>(Customer, HttpStatus.CREATED);
+		
 	}
 
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
@@ -85,6 +89,15 @@ public class CustomerController {
 	@Autowired
 	public void setCustomerServices(CustomerServices customerServices) {
 		this.customerServices = customerServices;
+	}
+
+	@Autowired
+	public void setRabbitMQSender(RabbitMQSender rabbitMQSender) {
+		this.rabbitMQSender = rabbitMQSender;
+	}
+
+	public RabbitMQSender getRabbitMQSender() {
+		return rabbitMQSender;
 	}
 
 }
