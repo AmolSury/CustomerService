@@ -69,7 +69,7 @@ public class CustomerControllerTest {
 		customer.setLastName("Sury");
 		customer.setEmailId("asury@gmail.com");
 		String custJson = "  {\\n    \\\"firstName\\\":\\\"Amol\\\",\\n    \\\"lastName\\\":\\\"Sury\\\",\\n    \\\"emailId\\\":\\\"asury@gmail.com\\\"\\n  }";
-		when(customerServices.createCustomers(customer)).thenReturn("CustomerCreated");
+		when(customerServices.createCustomers(customer)).thenReturn(customer);
 		when(customerRepository.save(customer)).thenReturn(retCust);
 
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/customer-services/create")

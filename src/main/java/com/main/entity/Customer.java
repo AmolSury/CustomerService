@@ -47,14 +47,13 @@ public class Customer implements Serializable{
 		
 	}
 
-	public Customer(Long id, @NotBlank String firstName, String lastName, @NotBlank String emailId,
-			String messageToMQ) {
+	public Customer(Long id, @NotBlank String firstName, String lastName, @NotBlank String emailId) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
-		this.messageToMQ = messageToMQ;
+	//	this.messageToMQ = messageToMQ;
 	}
 
 	public Long getId() {
