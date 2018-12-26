@@ -27,7 +27,7 @@ public class Customer implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	private Long id;
+	private Long CustId;
 	
 	@NotBlank
 	@Column(name="first_name")
@@ -47,21 +47,21 @@ public class Customer implements Serializable{
 		
 	}
 	
-	public Customer(Long id, @NotBlank String firstName, String lastName, @NotBlank String emailId) {
+	public Customer(Long CustId, @NotBlank String firstName, String lastName, @NotBlank String emailId) {
 		super();
-		this.id = id;
+		this.CustId = CustId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
 	//	this.messageStatus = messageStatus;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getCustId() {
+		return CustId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCustId(Long custId) {
+		CustId = custId;
 	}
 
 	public String getFirstName() {
@@ -100,9 +100,9 @@ public class Customer implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((CustId == null) ? 0 : CustId.hashCode());
 		result = prime * result + ((emailId == null) ? 0 : emailId.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((messageStatus == null) ? 0 : messageStatus.hashCode());
 		return result;
@@ -117,6 +117,11 @@ public class Customer implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
+		if (CustId == null) {
+			if (other.CustId != null)
+				return false;
+		} else if (!CustId.equals(other.CustId))
+			return false;
 		if (emailId == null) {
 			if (other.emailId != null)
 				return false;
@@ -126,11 +131,6 @@ public class Customer implements Serializable{
 			if (other.firstName != null)
 				return false;
 		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
@@ -147,7 +147,7 @@ public class Customer implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
+		return "Customer [CustId=" + CustId + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
 				+ ", messageStatus=" + messageStatus + "]";
 	}
 

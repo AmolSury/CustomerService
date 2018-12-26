@@ -28,7 +28,7 @@ public class CustomerServices {
 	}
 
 	public String updateCustomer(Customer customer) {
-		if (getCustomerRepository().existsById(customer.getId())) {
+		if (getCustomerRepository().existsById(customer.getCustId())) {
 			getCustomerRepository().save(customer);
 			return "Updated";
 		}

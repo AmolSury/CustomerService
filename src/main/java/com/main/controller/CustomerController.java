@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.main.entity.Customer;
 import com.main.exception_handler.CustomerNotFoundException;
 import com.main.services.CustomerServices;
@@ -37,12 +39,14 @@ public class CustomerController {
 	private MessageSender messageSender;
 
 	@PostMapping(value = "/create")
-	public ResponseEntity<Customer> createCustomer(@RequestBody @Valid Customer customer) {
+	public ResponseEntity<Customer> createCustomer(@RequestBody @Valid Customer customer) throws JsonProcessingException {
 		
 		Customer Customer = getCustomerServices().createCustomers(customer);
 		Customer.setMessageStatus("CustomerCreated");
+		
+		ObjectMapper mapper = new ObjectMapper();
 		//for Kafka
-		messageSender.send(Customer.toString());
+		messageSender.send(mapper.writeValueAsString(Customer));
 		//for RabbitMQ
 		//getRabbitMQSender().send(Customer);
 		return new ResponseEntity<Customer>(Customer, HttpStatus.CREATED);
@@ -69,7 +73,7 @@ public class CustomerController {
 	public ResponseEntity<String> updateCustomer(@RequestBody Customer currentCustomer) {
 		String status = getCustomerServices().updateCustomer(currentCustomer);
 		if (status == "NotFound") {
-			throw new CustomerNotFoundException("Not found customer with Id is" + currentCustomer.getId());
+			throw new CustomerNotFoundException("Not found customer with Id is" + currentCustomer.getCustId());
 		}
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
