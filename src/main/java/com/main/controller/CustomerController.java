@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.main.entity.Customer;
 import com.main.exception_handler.CustomerNotFoundException;
 import com.main.services.CustomerServices;
+import com.main.services.MessageSender;
 import com.main.services.RabbitMQSender;
 
 @RestController
@@ -31,18 +32,18 @@ public class CustomerController {
 	private CustomerServices customerServices;
 	
 	private RabbitMQSender rabbitMQSender;
+	
+	@Autowired
+	private MessageSender messageSender;
 
-	/*
-	 * @RequestMapping(value="/create/customers", method=RequestMethod.POST,
-	 * consumes=MediaType.APPLICATION_JSON_VALUE)
-	 * 
-	 * @ResponseBody
-	 */
 	@PostMapping(value = "/create")
 	public ResponseEntity<Customer> createCustomer(@RequestBody @Valid Customer customer) {
 		
 		Customer Customer = getCustomerServices().createCustomers(customer);
-		getRabbitMQSender().send(Customer);
+		//for Kafka
+		messageSender.send(Customer.toString());
+		//for RabbitMQ
+		//getRabbitMQSender().send(Customer);
 		return new ResponseEntity<Customer>(Customer, HttpStatus.CREATED);
 		
 	}

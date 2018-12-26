@@ -1,16 +1,11 @@
 package com.main.services;
 
-import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import com.main.entity.Customer;
 
 @Service
 public class RabbitMQSender {
 	
-	@Autowired
+	/*@Autowired
 	private AmqpTemplate rabbitTemplate;
 	
 	@Value("")
@@ -23,6 +18,6 @@ public class RabbitMQSender {
 		rabbitTemplate.convertAndSend(exchange, routingkey, customer);
 		System.out.println("Send msg = " + customer);
 	    
-	}
+	}*/
 
 }

@@ -41,19 +41,19 @@ public class Customer implements Serializable{
 	private String emailId;
 	
 	@Transient
-	private String messageToMQ;
+	private String messageStatus;
 	
 	public Customer() {
 		
 	}
-
+	
 	public Customer(Long id, @NotBlank String firstName, String lastName, @NotBlank String emailId) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
-	//	this.messageToMQ = messageToMQ;
+	//	this.messageStatus = messageStatus;
 	}
 
 	public Long getId() {
@@ -88,12 +88,12 @@ public class Customer implements Serializable{
 		this.emailId = emailId;
 	}
 
-	public String getMessageToMQ() {
-		return messageToMQ;
+	public String getMessageStatus() {
+		return messageStatus;
 	}
 
-	public void setMessageToMQ(String messageToMQ) {
-		this.messageToMQ = messageToMQ;
+	public void setMessageStatus(String messageStatus) {
+		this.messageStatus = messageStatus;
 	}
 
 	@Override
@@ -104,7 +104,7 @@ public class Customer implements Serializable{
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((messageToMQ == null) ? 0 : messageToMQ.hashCode());
+		result = prime * result + ((messageStatus == null) ? 0 : messageStatus.hashCode());
 		return result;
 	}
 
@@ -137,10 +137,10 @@ public class Customer implements Serializable{
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
-		if (messageToMQ == null) {
-			if (other.messageToMQ != null)
+		if (messageStatus == null) {
+			if (other.messageStatus != null)
 				return false;
-		} else if (!messageToMQ.equals(other.messageToMQ))
+		} else if (!messageStatus.equals(other.messageStatus))
 			return false;
 		return true;
 	}
@@ -148,7 +148,7 @@ public class Customer implements Serializable{
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
-				+ "]";
+				+ ", messageStatus=" + messageStatus + "]";
 	}
 
 }
