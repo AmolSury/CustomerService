@@ -40,6 +40,7 @@ public class CustomerController {
 	public ResponseEntity<Customer> createCustomer(@RequestBody @Valid Customer customer) {
 		
 		Customer Customer = getCustomerServices().createCustomers(customer);
+		Customer.setMessageStatus("CustomerCreated");
 		//for Kafka
 		messageSender.send(Customer.toString());
 		//for RabbitMQ
