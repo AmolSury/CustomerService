@@ -6,7 +6,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,13 +37,10 @@ public class CustomerController {
 	
 	@Autowired
 	private MessageSender messageSender;
-	
-	@Value("${msg}")
-	String msg;
 
 	@PostMapping(value = "/create")
 	public ResponseEntity<Customer> createCustomer(@RequestBody @Valid Customer customer) throws JsonProcessingException {
-		System.out.println("-=-=-=-=-=-="+ msg);
+		
 		Customer Customer = getCustomerServices().createCustomers(customer);
 		Customer.setMessageStatus("CustomerCreated");
 		
