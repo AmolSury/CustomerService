@@ -28,6 +28,7 @@ import com.main.services.MessageSender;
 import com.main.services.RabbitMQSender;
 
 @RestController
+//@Component
 @RequestMapping("/customer-services")
 public class CustomerController {
 

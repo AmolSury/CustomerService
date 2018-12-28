@@ -15,10 +15,10 @@ public class ScheduledTasks {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(fixedRate = 2000)
+  /*  @Scheduled(fixedRate = 2000)
     public void reportCurrentTime() {
     	System.out.println("------------------------The time is now " +dateFormat.format(new Date()));
        // log.info("------------------------The time is now {}", dateFormat.format(new Date()));
-    }
+    }*/
 
 }
